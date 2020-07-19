@@ -54,7 +54,7 @@ export class AuthService {
   async validateUserToken(payload: JwtPayload): Promise<User> {
     return await this.usersService.findById(payload.id);
   }
-  async validateUser(email: string, password: string): Promise<UserRO> {
+  async validateUser(email: string, password: string): Promise<UserRo> {
     const user = await this.usersService.findByEmail(email);
     if (user && user.comparePassword(password)) {
       this.logger.log('password check success');
