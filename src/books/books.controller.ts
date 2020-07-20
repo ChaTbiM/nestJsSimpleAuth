@@ -31,7 +31,6 @@ export class BooksController {
     return res.status(HttpStatus.OK).json(result);
   }
 
-  @UseGuards(AuthGuard('jwt'))
   // get public books
   @Get('/public')
   public async getPublicBooks(@Response() res) {
