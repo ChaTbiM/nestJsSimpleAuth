@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
@@ -11,15 +12,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: 'Codebrains',
+      secretOrKey: 'NeStTest',
     });
   }
 
-  async validate(payload: any, done: Function) {
-    const user = await this.authService.validateUserToken(payload);
-    if (!user) {
-      return done(new UnauthorizedException(), false);
-    }
-    done(null, user);
+  async validate(payload: any) {
+    return { userId: payload.sub, username: payload.username };
   }
 }
