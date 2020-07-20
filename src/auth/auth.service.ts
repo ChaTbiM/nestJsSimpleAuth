@@ -2,7 +2,7 @@ import { debug } from 'console';
 import { Injectable, Logger } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import { UsersService } from '../users/users.service';
-import { User } from '../users/users.entity';
+import { User } from '../users/user.entity';
 import { UserRo } from '../users/users.ro';
 import { JwtPayload } from './interface/jwt-payload.interface';
 import { RegistrationStatus } from './interface/registrationStatus.interface';
@@ -40,7 +40,7 @@ export class AuthService {
         firstname: user.firstName,
         lastname: user.lastName,
       },
-      'Codebrains',
+      'NeStTest',
       { expiresIn },
     );
     //debug('return the token');
@@ -54,6 +54,7 @@ export class AuthService {
   async validateUserToken(payload: JwtPayload): Promise<User> {
     return await this.usersService.findById(payload.id);
   }
+
   async validateUser(email: string, password: string): Promise<UserRo> {
     const user = await this.usersService.findByEmail(email);
     if (user && user.comparePassword(password)) {

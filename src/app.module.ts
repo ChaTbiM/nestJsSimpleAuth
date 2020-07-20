@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BooksModule } from './books/books.module';
 
 let envPath = '.env.development';
 process.env.NODE_ENV = 'development';
@@ -22,6 +23,7 @@ const con = new ConfigService();
     }),
     AuthModule,
     UsersModule,
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],

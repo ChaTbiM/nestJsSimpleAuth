@@ -3,7 +3,6 @@ import {
   ObjectIdColumn,
   ObjectID,
   Column,
-  CreateDateColumn,
   BeforeInsert,
 } from 'typeorm';
 
